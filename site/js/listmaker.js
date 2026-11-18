@@ -14,6 +14,70 @@
   var lastBlob = null;
   var el = {};
 
+  var LANG = (document.documentElement.lang || 'en').slice(0, 2);
+  var I18N = {
+    en: {
+      choose: 'Please choose screenshots or photos.', max: 'You can add up to {n} products.',
+      loading: 'Loading {n} image(s)…', openFail: 'Some images could not be opened (HEIC photos may not work in every browser — screenshots are best).',
+      reading: 'Reading screenshots… the first one takes a little longer.', left: 'Reading screenshots… {n} left',
+      done: 'Done reading. Please check each name and price — the reader can make mistakes.',
+      ocrFail: 'Could not load the text reader. Check your internet connection, or type the names and prices yourself.',
+      readingPh: 'Reading…', namePh: 'Product name', pricePh: 'Price', nameLbl: 'Product {n} name', priceLbl: 'Product {n} price in won',
+      dec: 'Decrease quantity of product {n}', inc: 'Increase quantity of product {n}', qty: 'Quantity', remove: 'Remove product {n}',
+      warn: "Couldn't read this one — please type the name and price.",
+      items: '{n} item(s)', refundRange: '− {a} to {b}', split: 'Split your order',
+      noteOk: 'Instant tax refund at the counter: about 5–8% of your total. Show your physical passport before you pay.',
+      noteSplit: 'The instant refund works on receipts under ₩1,000,000. Ask to split your purchase into separate receipts.',
+      noteMore: 'Add {n} more to reach the ₩15,000 minimum for a tax refund.', noteEmpty: 'Add products to see your total.',
+      title: 'My Olive Young list', product: 'Product {n}', sub: "I'm looking for these products · {n} item(s)",
+      cTotal: 'Total', cRefund: 'Est. instant tax refund (5–8%)', cPay: 'You pay after refund', cTax: 'Tax refund',
+      cSplit: 'Split into receipts under ₩1,000,000', cMin: 'Needs ₩15,000+ on one receipt',
+      cNote: 'Prices from screenshots — check in store. Show your passport before paying: 택스 리펀드 해 주세요.'
+    },
+    ja: {
+      choose: 'スクショか写真を選んでください。', max: '商品は最大{n}点まで追加できます。',
+      loading: '{n}枚の画像を読み込み中…', openFail: '開けない画像がありました（HEIC写真はブラウザによっては使えません。スクショがおすすめです）。',
+      reading: 'スクショを読み取り中…最初の1枚は少し時間がかかります。', left: 'スクショを読み取り中…残り{n}枚',
+      done: '読み取り完了。読み間違えることがあるので、商品名と価格を確認してください。',
+      ocrFail: '文字読み取り機能を読み込めませんでした。インターネット接続を確認するか、商品名と価格を手入力してください。',
+      readingPh: '読み取り中…', namePh: '商品名', pricePh: '価格', nameLbl: '商品{n}の名前', priceLbl: '商品{n}の価格（ウォン）',
+      dec: '商品{n}の数量を減らす', inc: '商品{n}の数量を増やす', qty: '数量', remove: '商品{n}を削除',
+      warn: '読み取れませんでした。商品名と価格を入力してください。',
+      items: '{n}点', refundRange: '− {a}〜{b}', split: '会計を分けましょう',
+      noteOk: 'レジで即時免税：合計の約5〜8%。支払い前にパスポート原本を提示してください。',
+      noteSplit: '即時免税は1回の会計が₩1,000,000未満の場合のみ。会計を分けてもらいましょう。',
+      noteMore: 'あと{n}で免税の最低金額₩15,000に届きます。', noteEmpty: '商品を追加すると合計が表示されます。',
+      title: 'オリーブヤング買い物リスト', product: '商品{n}', sub: 'これらの商品を探しています · {n}点',
+      cTotal: '合計', cRefund: '即時免税の目安（5〜8%）', cPay: '免税後の支払額', cTax: '免税',
+      cSplit: '₩1,000,000未満ずつ会計を分ける', cMin: '1回の会計で₩15,000以上が必要',
+      cNote: '価格はスクショ時点のもの。店頭で確認を。支払い前にパスポート提示：택스 리펀드 해 주세요.'
+    },
+    zh: {
+      choose: '请选择截图或照片。', max: '最多可以添加{n}个商品。',
+      loading: '正在加载{n}张图片…', openFail: '有些图片无法打开（部分浏览器不支持 HEIC 照片，建议使用截图）。',
+      reading: '正在识别截图…第一张会稍慢一些。', left: '正在识别截图…还剩{n}张',
+      done: '识别完成。识别可能出错，请核对每个商品名和价格。',
+      ocrFail: '无法加载文字识别功能。请检查网络连接，或手动输入商品名和价格。',
+      readingPh: '识别中…', namePh: '商品名', pricePh: '价格', nameLbl: '商品{n}名称', priceLbl: '商品{n}价格（韩元）',
+      dec: '减少商品{n}的数量', inc: '增加商品{n}的数量', qty: '数量', remove: '删除商品{n}',
+      warn: '这张没能识别，请输入商品名和价格。',
+      items: '{n}件', refundRange: '− {a} 至 {b}', split: '请分开结账',
+      noteOk: '收银台即时退税：约为总价的5–8%。付款前请出示护照原件。',
+      noteSplit: '即时退税仅适用于单张小票不满₩1,000,000的情况，请分开结账。',
+      noteMore: '再买{n}即可达到退税最低金额₩15,000。', noteEmpty: '添加商品后显示总价。',
+      title: '我的 Olive Young 清单', product: '商品{n}', sub: '我在找这些商品 · {n}件',
+      cTotal: '总计', cRefund: '预计即时退税（5–8%）', cPay: '退税后实付', cTax: '退税',
+      cSplit: '每张小票请控制在₩1,000,000以下', cMin: '单张小票需满₩15,000',
+      cNote: '价格以截图为准，请在店内确认。付款前出示护照：택스 리펀드 해 주세요.'
+    }
+  };
+  function t(key, vars) {
+    var str = (I18N[LANG] || I18N.en)[key] || I18N.en[key];
+    if (vars) Object.keys(vars).forEach(function (k) { str = str.replace('{' + k + '}', vars[k]); });
+    if (LANG === 'en' && vars && vars.n !== undefined) str = str.replace(/\((s)\)/, String(vars.n) === '1' ? '' : 's').replace('image(s)', +vars.n === 1 ? 'image' : 'images');
+    return str;
+  }
+
   function $(id) { return document.getElementById(id); }
   function won(n) { return '₩' + Math.round(n).toLocaleString('en-US'); }
   function setStatus(msg) { el.status.textContent = msg || ''; }
@@ -99,12 +163,12 @@
         it.status = (p.name || p.price) ? 'done' : 'failed';
       }).catch(function () {
         it.status = 'failed';
-        setStatus('Could not load the text reader. Check your internet connection, or type the names and prices yourself.');
+        setStatus(t('ocrFail'));
       }).then(function () {
         render();
         var left = items.filter(function (x) { return x.status === 'reading'; }).length;
-        if (!left) setStatus('Done reading. Please check each name and price — the reader can make mistakes.');
-        else setStatus('Reading screenshots… ' + left + ' left');
+        if (!left) setStatus(t('done'));
+        else setStatus(t('left', { n: left }));
       });
     });
   }
@@ -112,17 +176,17 @@
   // ---------- Items ----------
   function addFiles(files) {
     var list = Array.prototype.slice.call(files).filter(function (f) { return /^image\//.test(f.type); });
-    if (!list.length) { setStatus('Please choose screenshots or photos.'); return; }
+    if (!list.length) { setStatus(t('choose')); return; }
     var room = MAX_ITEMS - items.length;
-    if (room <= 0) { setStatus('You can add up to ' + MAX_ITEMS + ' products.'); return; }
+    if (room <= 0) { setStatus(t('max', { n: MAX_ITEMS })); return; }
     list = list.slice(0, room);
     var slots = new Array(list.length), pending = list.length, failed = false;
-    setStatus('Loading ' + pending + ' image' + (pending > 1 ? 's' : '') + '…');
+    setStatus(t('loading', { n: pending }));
     function done() {
       if (--pending > 0) return;
       slots.forEach(function (it) { if (it) { items.push(it); readItem(it); } });
       render();
-      setStatus(failed ? 'Some images could not be opened (HEIC photos may not work in every browser — screenshots are best).' : 'Reading screenshots… the first one takes a little longer.');
+      setStatus(failed ? t('openFail') : t('reading'));
     }
     list.forEach(function (f, k) {
       var url = URL.createObjectURL(f);
@@ -162,21 +226,21 @@
   }
 
   function renderReceipt() {
-    var t = totals();
-    el.rCount.textContent = t.count + ' item' + (t.count === 1 ? '' : 's');
-    el.rSubtotal.textContent = won(t.subtotal);
-    if (t.eligible) {
-      el.rRefund.textContent = '− ' + won(t.low) + ' to ' + won(t.high);
-      el.rPay.textContent = won(t.subtotal - t.high) + ' – ' + won(t.subtotal - t.low);
-      el.rNote.textContent = 'Instant tax refund at the counter: about 5–8% of your total. Show your physical passport before you pay.';
-    } else if (t.subtotal >= REFUND_MAX) {
-      el.rRefund.textContent = 'Split your order';
-      el.rPay.textContent = won(t.subtotal);
-      el.rNote.textContent = 'The instant refund works on receipts under ₩1,000,000. Ask to split your purchase into separate receipts.';
+    var tt = totals();
+    el.rCount.textContent = t('items', { n: tt.count });
+    el.rSubtotal.textContent = won(tt.subtotal);
+    if (tt.eligible) {
+      el.rRefund.textContent = t('refundRange', { a: won(tt.low), b: won(tt.high) });
+      el.rPay.textContent = won(tt.subtotal - tt.high) + ' – ' + won(tt.subtotal - tt.low);
+      el.rNote.textContent = t('noteOk');
+    } else if (tt.subtotal >= REFUND_MAX) {
+      el.rRefund.textContent = t('split');
+      el.rPay.textContent = won(tt.subtotal);
+      el.rNote.textContent = t('noteSplit');
     } else {
       el.rRefund.textContent = '—';
-      el.rPay.textContent = won(t.subtotal);
-      el.rNote.textContent = t.subtotal ? 'Add ' + won(REFUND_MIN - t.subtotal) + ' more to reach the ₩15,000 minimum for a tax refund.' : 'Add products to see your total.';
+      el.rPay.textContent = won(tt.subtotal);
+      el.rNote.textContent = tt.subtotal ? t('noteMore', { n: won(REFUND_MIN - tt.subtotal) }) : t('noteEmpty');
     }
     el.make.disabled = items.length === 0;
   }
@@ -198,21 +262,21 @@
       var main = document.createElement('div');
       main.className = 'lm-rmain';
       var nameId = 'lm-name-' + it.id, priceId = 'lm-price-' + it.id;
-      var nl = document.createElement('label'); nl.className = 'visually-hidden'; nl.htmlFor = nameId; nl.textContent = 'Product ' + (i + 1) + ' name';
+      var nl = document.createElement('label'); nl.className = 'visually-hidden'; nl.htmlFor = nameId; nl.textContent = t('nameLbl', { n: i + 1 });
       var name = document.createElement('input');
       name.id = nameId; name.className = 'lm-name'; name.type = 'text'; name.maxLength = 80;
-      name.placeholder = it.status === 'reading' ? 'Reading…' : 'Product name';
+      name.placeholder = it.status === 'reading' ? t('readingPh') : t('namePh');
       name.value = it.name;
       name.addEventListener('input', function () { it.name = name.value; });
       main.appendChild(nl); main.appendChild(name);
 
       var line = document.createElement('div');
       line.className = 'lm-rline';
-      var pl = document.createElement('label'); pl.className = 'visually-hidden'; pl.htmlFor = priceId; pl.textContent = 'Product ' + (i + 1) + ' price in won';
+      var pl = document.createElement('label'); pl.className = 'visually-hidden'; pl.htmlFor = priceId; pl.textContent = t('priceLbl', { n: i + 1 });
       var pwrap = document.createElement('span'); pwrap.className = 'lm-pwrap';
       var price = document.createElement('input');
       price.id = priceId; price.type = 'text'; price.inputMode = 'numeric'; price.className = 'lm-price';
-      price.placeholder = 'Price';
+      price.placeholder = t('pricePh');
       price.value = it.price ? it.price.toLocaleString('en-US') : '';
       var lineTotal = document.createElement('span'); lineTotal.className = 'lm-ltotal'; lineTotal.textContent = won(it.price * it.qty);
       price.addEventListener('input', function () {
@@ -227,9 +291,9 @@
       line.appendChild(pl); line.appendChild(pwrap);
 
       var qty = document.createElement('span'); qty.className = 'lm-qty';
-      var minus = document.createElement('button'); minus.type = 'button'; minus.textContent = '−'; minus.setAttribute('aria-label', 'Decrease quantity of product ' + (i + 1));
-      var q = document.createElement('output'); q.textContent = it.qty; q.setAttribute('aria-label', 'Quantity');
-      var plus = document.createElement('button'); plus.type = 'button'; plus.textContent = '+'; plus.setAttribute('aria-label', 'Increase quantity of product ' + (i + 1));
+      var minus = document.createElement('button'); minus.type = 'button'; minus.textContent = '−'; minus.setAttribute('aria-label', t('dec', { n: i + 1 }));
+      var q = document.createElement('output'); q.textContent = it.qty; q.setAttribute('aria-label', t('qty'));
+      var plus = document.createElement('button'); plus.type = 'button'; plus.textContent = '+'; plus.setAttribute('aria-label', t('inc', { n: i + 1 }));
       minus.disabled = it.qty <= 1;
       minus.addEventListener('click', function () { if (it.qty > 1) { it.qty--; q.textContent = it.qty; minus.disabled = it.qty <= 1; lineTotal.textContent = won(it.price * it.qty); renderReceipt(); } });
       plus.addEventListener('click', function () { if (it.qty < 99) { it.qty++; q.textContent = it.qty; minus.disabled = false; lineTotal.textContent = won(it.price * it.qty); renderReceipt(); } });
@@ -240,14 +304,14 @@
 
       if (it.status === 'failed') {
         var warn = document.createElement('span'); warn.className = 'lm-warn';
-        warn.textContent = "Couldn't read this one — please type the name and price.";
+        warn.textContent = t('warn');
         main.appendChild(warn);
       }
       row.appendChild(main);
 
       var rm = document.createElement('button');
       rm.type = 'button'; rm.className = 'lm-remove'; rm.textContent = '×';
-      rm.setAttribute('aria-label', 'Remove product ' + (i + 1));
+      rm.setAttribute('aria-label', t('remove', { n: i + 1 }));
       rm.addEventListener('click', function () { removeItem(it.id); });
       row.appendChild(rm);
 
@@ -265,7 +329,7 @@
 
   function makeImage() {
     if (!items.length) return;
-    var t = totals();
+    var tt = totals();
     var W = 1080, pad = 56, rowH = 132, headH = 230;
     var footH = 330;
     var H = headH + items.length * rowH + footH;
@@ -276,11 +340,11 @@
     ctx.fillStyle = '#FFFFFF'; ctx.fillRect(0, 0, W, H);
     ctx.fillStyle = '#0A5C8A'; ctx.fillRect(0, 0, W, 186);
     ctx.fillStyle = '#FFFFFF'; ctx.font = '700 46px ' + sans;
-    ctx.fillText(fit(ctx, (el.title.value || 'My Olive Young list').trim(), W - pad * 2), pad, 80);
+    ctx.fillText(fit(ctx, (el.title.value || t('title')).trim(), W - pad * 2), pad, 80);
     ctx.font = '500 30px ' + sans;
     ctx.fillText('이 제품들을 찾고 있어요. 도와주세요!', pad, 128);
     ctx.font = '400 22px ' + sans; ctx.fillStyle = '#CFE3F0';
-    ctx.fillText("I'm looking for these products · " + t.count + ' item' + (t.count === 1 ? '' : 's'), pad, 164);
+    ctx.fillText(t('sub', { n: tt.count }), pad, 164);
 
     items.forEach(function (it, i) {
       var y = headH + i * rowH;
@@ -299,7 +363,7 @@
       }
       var nx = tx + ts + 24, nw = W - pad - nx - 190;
       ctx.fillStyle = '#0E1A24'; ctx.font = '600 28px ' + sans;
-      ctx.fillText(fit(ctx, it.name || 'Product ' + (i + 1), nw), nx, y + 30);
+      ctx.fillText(fit(ctx, it.name || t('product', { n: i + 1 }), nw), nx, y + 30);
       ctx.fillStyle = '#4A5A66'; ctx.font = '400 24px ' + sans;
       ctx.fillText(it.qty + ' × ' + won(it.price || 0), nx, y + 72);
       ctx.fillStyle = '#0E1A24'; ctx.font = '700 28px ' + sans; ctx.textAlign = 'right';
@@ -314,15 +378,15 @@
       ctx.fillStyle = color || '#0E1A24'; ctx.font = (bold ? '700 34px ' : '400 26px ') + sans;
       ctx.fillText(label, pad, y); ctx.textAlign = 'right'; ctx.fillText(value, W - pad, y); ctx.textAlign = 'left';
     }
-    line('Total', won(t.subtotal), fy + 56, true);
-    if (t.eligible) {
-      line('Est. instant tax refund (5–8%)', '− ' + won(t.low) + ' ~ ' + won(t.high), fy + 106, false, '#0A5C8A');
-      line('You pay after refund', won(t.subtotal - t.high) + ' ~ ' + won(t.subtotal - t.low), fy + 162, true);
+    line(t('cTotal'), won(tt.subtotal), fy + 56, true);
+    if (tt.eligible) {
+      line(t('cRefund'), '− ' + won(tt.low) + ' ~ ' + won(tt.high), fy + 106, false, '#0A5C8A');
+      line(t('cPay'), won(tt.subtotal - tt.high) + ' ~ ' + won(tt.subtotal - tt.low), fy + 162, true);
     } else {
-      line('Tax refund', t.subtotal >= REFUND_MAX ? 'Split into receipts under ₩1,000,000' : 'Needs ₩15,000+ on one receipt', fy + 106, false, '#55656F');
+      line(t('cTax'), tt.subtotal >= REFUND_MAX ? t('cSplit') : t('cMin'), fy + 106, false, '#55656F');
     }
     ctx.fillStyle = '#55656F'; ctx.font = '400 21px ' + sans;
-    ctx.fillText('Prices from screenshots — check in store. Show your passport before paying: 택스 리펀드 해 주세요.', pad, fy + 222);
+    ctx.fillText(t('cNote'), pad, fy + 222);
     ctx.fillText('Made with Local Busan · localbusan.pages.dev', pad, fy + 266);
 
     c.toBlob(function (blob) {
@@ -345,7 +409,7 @@
 
   function share() {
     if (!lastBlob) return;
-    navigator.share({ files: [new File([lastBlob], 'olive-young-list.png', { type: 'image/png' })], title: 'My Olive Young list' }).catch(function () {});
+    navigator.share({ files: [new File([lastBlob], 'olive-young-list.png', { type: 'image/png' })], title: t('title') }).catch(function () {});
   }
 
   document.addEventListener('DOMContentLoaded', function () {

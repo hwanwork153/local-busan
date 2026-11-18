@@ -1,0 +1,44 @@
+<!-- {"title": "地元民に質問 — 釜山旅行の疑問にお答えします", "description": "グルメ、カフェ、宿泊エリア、交通など、釜山のことならなんでも地元民に質問できます。無料・登録不要。すべての質問に釜山の地元民2人が目を通します。", "path": "/ask", "nav": "ask", "scripts": ["/js/ask.js"]} -->
+<section class="section-soft">
+<div class="container" style="display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start;padding-top:56px;padding-bottom:56px">
+<div style="flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:16px">
+<h1 style="font-size:clamp(36px,4.6vw,48px)">地元民に質問</h1>
+<p class="lede">グルメ、カフェ、宿泊エリア、交通など、釜山のことならなんでもどうぞ。釜山歴27年と24年の地元民2人が、すべての質問に自分で目を通します。</p>
+<ul style="margin:8px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:16px;color:var(--ink-2)">
+<li style="display:flex;gap:10px"><svg aria-hidden="true" fill="none" height="20" stroke="#0A5C8A" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" style="flex:0 0 20px;margin-top:3px" viewbox="0 0 24 24" width="20"><path d="M5 12l5 5 9-10"></path></svg>無料・登録不要</li>
+<li style="display:flex;gap:10px"><svg aria-hidden="true" fill="none" height="20" stroke="#0A5C8A" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" style="flex:0 0 20px;margin-top:3px" viewbox="0 0 24 24" width="20"><path d="M5 12l5 5 9-10"></path></svg>メールで返信します</li>
+<li style="display:flex;gap:10px"><svg aria-hidden="true" fill="none" height="20" stroke="#0A5C8A" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" style="flex:0 0 20px;margin-top:3px" viewbox="0 0 24 24" width="20"><path d="M5 12l5 5 9-10"></path></svg>良い質問はガイドとして公開することがあります（お名前やメールアドレスは載せません）</li>
+</ul>
+</div>
+<div class="panel" style="flex:1 1 520px;min-width:0">
+<form class="form" id="ask-form" method="post" novalidate="">
+<div class="field">
+<label for="ask-q">質問内容</label>
+<textarea id="ask-q" name="question" placeholder="例：夜9時に金海空港に着きます。広安里へ行く一番簡単な方法は？" required="" rows="5"></textarea>
+</div>
+<div class="row">
+<div class="field">
+<label for="ask-topic">テーマ</label>
+<select id="ask-topic" name="topic">
+<option>グルメ</option><option>カフェ</option><option>ツアー＆チケット</option><option>エリア・宿泊</option><option>お役立ち情報</option><option>その他</option>
+</select>
+</div>
+<div class="field">
+<label for="ask-area">エリア（任意）</label>
+<select id="ask-area" name="area">
+<option>まだ決めていない</option><option>海雲台（ヘウンデ）</option><option>広安里（クァンアンリ）</option><option>西面（ソミョン）・田浦（チョンポ）</option><option>南浦（ナンポ）・チャガルチ</option><option>影島（ヨンド）</option><option>機張（キジャン）</option><option>釜山駅</option><option>その他</option>
+</select>
+</div>
+</div>
+<div class="field">
+<label for="ask-email">メールアドレス（返信用）</label>
+<input autocomplete="email" id="ask-email" name="email" placeholder="you@example.com" required="" type="email"/>
+</div>
+<input aria-hidden="true" autocomplete="off" name="_gotcha" style="display:none" tabindex="-1" type="text"/>
+<button class="btn" type="submit">質問を送る</button>
+<p class="form-note">メールアドレスは返信のためだけに使います。<a href="/privacy">プライバシーポリシー</a>をご覧ください。</p>
+<div aria-live="polite" id="ask-status" role="status"></div>
+</form>
+</div>
+</div>
+</section>

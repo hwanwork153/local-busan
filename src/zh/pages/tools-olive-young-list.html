@@ -1,0 +1,57 @@
+<!-- {"title": "Olive Young 购物清单与退税计算器 — 截图自动生成", "description": "韩国旅行者的免费工具：上传 Olive Young 商品截图，自动识别商品名和价格。调整数量，查看总价和即时退税后的价格，并保存一张清单图给店员看。", "path": "/tools/olive-young-list", "nav": "tips", "scripts": ["/js/listmaker.js"], "jsonld": {"@context": "https://schema.org", "@type": "WebApplication", "name": "Olive Young Shopping List & Tax Refund Calculator", "url": "https://localbusan.pages.dev/tools/olive-young-list", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "creator": {"@type": "Organization", "name": "Local Busan"}}} -->
+<section class="section">
+<div class="container" style="display:flex;flex-direction:column;gap:28px">
+<nav aria-label="导航路径" class="breadcrumb" style="margin:0"><a href="/">首页</a><span aria-hidden="true">/</span><a href="/guides#tips">实用攻略</a><span aria-hidden="true">/</span><span>Olive Young 购物清单</span></nav>
+<div style="max-width:780px;display:flex;flex-direction:column;gap:14px">
+<span class="badge" style="align-self:flex-start">免费工具</span>
+<h1 style="font-size:clamp(32px,4.4vw,46px)">Olive Young 购物清单与退税计算器</h1>
+<p class="lede">上传想买商品的截图，我们会自动识别<strong>商品名和价格</strong>。设置好数量，就能看到<strong>总价和即时退税后的价格</strong>——就像购物前先看小票。最后保存一张清单图给店员看。</p>
+<p class="form-note">截图不会离开你的设备，文字识别在浏览器内完成。识别可能出错，请核对每个商品名和价格。</p>
+</div>
+<div class="lm-layout">
+<div class="panel lm-panel">
+<div class="field" style="flex:none">
+<label for="lm-title">清单标题</label>
+<input id="lm-title" maxlength="40" type="text" value="我的 Olive Young 清单"/>
+</div>
+<div class="lm-drop" id="lm-drop">
+<svg aria-hidden="true" fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="32"><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3M12 4v12M7 9l5-5 5 5"></path></svg>
+<label class="btn" for="lm-files">添加截图</label>
+<input accept="image/*" class="visually-hidden" id="lm-files" multiple="" type="file"/>
+<span class="form-note">每张截图一个商品效果最好 · 最多30个</span>
+</div>
+<p aria-live="polite" class="form-note" id="lm-status" role="status"></p>
+<p class="form-note" id="lm-empty" style="text-align:center">还没有商品。</p>
+<div class="lm-list" id="lm-list"></div>
+<div class="chips" style="gap:10px">
+<button class="btn btn-ghost" id="lm-add" type="button">+ 手动添加商品</button>
+<button class="btn btn-ghost" hidden="" id="lm-clear" type="button">重新开始</button>
+</div>
+</div>
+<aside aria-label="小票预览" class="lm-receipt">
+<div class="lm-rhead"><strong>小票预览</strong><span id="lm-r-count">0件</span></div>
+<div class="lm-rrow"><span>总计</span><strong id="lm-r-subtotal">₩0</strong></div>
+<div class="lm-rrow lm-rrefund"><span>预计即时退税</span><span id="lm-r-refund">—</span></div>
+<div class="lm-rrow lm-rpay"><span>退税后实付</span><strong id="lm-r-pay">₩0</strong></div>
+<p class="lm-rnote" id="lm-r-note">添加商品后显示总价。</p>
+<button class="btn" disabled="" id="lm-make" style="width:100%" type="button">保存为一张图片</button>
+</aside>
+</div>
+<div class="panel" hidden="" id="lm-result" style="display:flex;flex-direction:column;gap:16px">
+<h2 class="h2">清单已生成</h2>
+<p style="color:var(--muted)">保存到相册，在店里给店员看。顶部的韩文意思是“我在找这些商品，请帮帮我！”</p>
+<img alt="带总价的购物清单图片" id="lm-result-img" style="width:100%;max-width:540px;border:1px solid var(--line);border-radius:14px"/>
+<div class="chips" style="gap:10px">
+<button class="btn" id="lm-download" type="button">下载图片</button>
+<button class="btn btn-ghost" hidden="" id="lm-share" type="button">分享 / 保存到相册</button>
+</div>
+</div>
+<div class="prose">
+<h2>退税估算说明</h2>
+<p>外国游客在参与退税的 Olive Young 收银台，单张小票满<strong>₩15,000</strong>且不满<strong>₩1,000,000</strong>即可即时退税（每次旅行最多₩5,000,000）。退税额约为购物金额的<strong>5–8%</strong>，并非全部10%增值税，所以我们显示一个范围。请携带护照原件，在付款前出示。</p>
+<h2>识别更准确的小技巧</h2>
+<p>每张截图一个商品，并确保商品名和价格清晰可见。Olive Young 官方 App 或网站的截图识别效果最好。如果商品名识别错了，直接改写即可。</p>
+<p>为什么这样买更好？请看<a href="/guides/olive-young-shopping-tip">Olive Young 别第一天就买，最后一天再买</a>。</p>
+</div>
+</div>
+</section>

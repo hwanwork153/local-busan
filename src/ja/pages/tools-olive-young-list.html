@@ -1,0 +1,57 @@
+<!-- {"title": "オリーブヤング買い物リスト＆免税計算ツール — スクショから自動作成", "description": "韓国旅行者向けの無料ツール。オリーブヤングの商品スクショを追加すると、商品名と価格を自動で読み取ります。数量を調整して、合計金額と即時免税後の金額を確認し、店員さんに見せる1枚のリスト画像を保存できます。", "path": "/tools/olive-young-list", "nav": "tips", "scripts": ["/js/listmaker.js"], "jsonld": {"@context": "https://schema.org", "@type": "WebApplication", "name": "Olive Young Shopping List & Tax Refund Calculator", "url": "https://localbusan.pages.dev/tools/olive-young-list", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "creator": {"@type": "Organization", "name": "Local Busan"}}} -->
+<section class="section">
+<div class="container" style="display:flex;flex-direction:column;gap:28px">
+<nav aria-label="パンくずリスト" class="breadcrumb" style="margin:0"><a href="/">ホーム</a><span aria-hidden="true">/</span><a href="/guides#tips">お役立ち情報</a><span aria-hidden="true">/</span><span>オリーブヤング買い物リスト</span></nav>
+<div style="max-width:780px;display:flex;flex-direction:column;gap:14px">
+<span class="badge" style="align-self:flex-start">無料ツール</span>
+<h1 style="font-size:clamp(32px,4.4vw,46px)">オリーブヤング買い物リスト＆免税計算ツール</h1>
+<p class="lede">欲しい商品のスクショを追加するだけ。<strong>商品名と価格</strong>を自動で読み取り、数量を決めれば<strong>合計金額と即時免税後の金額</strong>がわかります。買う前に見るレシートのような感覚です。最後に、店員さんに見せる1枚のリスト画像を保存しましょう。</p>
+<p class="form-note">スクショは端末の外に出ません。文字の読み取りはブラウザ内で行います。読み間違えることもあるので、商品名と価格を確認してください。</p>
+</div>
+<div class="lm-layout">
+<div class="panel lm-panel">
+<div class="field" style="flex:none">
+<label for="lm-title">リストのタイトル</label>
+<input id="lm-title" maxlength="40" type="text" value="オリーブヤング買い物リスト"/>
+</div>
+<div class="lm-drop" id="lm-drop">
+<svg aria-hidden="true" fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="32"><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3M12 4v12M7 9l5-5 5 5"></path></svg>
+<label class="btn" for="lm-files">スクショを追加</label>
+<input accept="image/*" class="visually-hidden" id="lm-files" multiple="" type="file"/>
+<span class="form-note">1枚に1商品がいちばん正確です · 最大30点</span>
+</div>
+<p aria-live="polite" class="form-note" id="lm-status" role="status"></p>
+<p class="form-note" id="lm-empty" style="text-align:center">まだ商品がありません。</p>
+<div class="lm-list" id="lm-list"></div>
+<div class="chips" style="gap:10px">
+<button class="btn btn-ghost" id="lm-add" type="button">＋ 手入力で商品を追加</button>
+<button class="btn btn-ghost" hidden="" id="lm-clear" type="button">最初からやり直す</button>
+</div>
+</div>
+<aside aria-label="レシートプレビュー" class="lm-receipt">
+<div class="lm-rhead"><strong>レシートプレビュー</strong><span id="lm-r-count">0点</span></div>
+<div class="lm-rrow"><span>合計</span><strong id="lm-r-subtotal">₩0</strong></div>
+<div class="lm-rrow lm-rrefund"><span>即時免税の目安</span><span id="lm-r-refund">—</span></div>
+<div class="lm-rrow lm-rpay"><span>免税後の支払額</span><strong id="lm-r-pay">₩0</strong></div>
+<p class="lm-rnote" id="lm-r-note">商品を追加すると合計が表示されます。</p>
+<button class="btn" disabled="" id="lm-make" style="width:100%" type="button">1枚の画像で保存</button>
+</aside>
+</div>
+<div class="panel" hidden="" id="lm-result" style="display:flex;flex-direction:column;gap:16px">
+<h2 class="h2">リストができました</h2>
+<p style="color:var(--muted)">写真に保存して、お店で店員さんに見せてください。上部の韓国語は「これらの商品を探しています。手伝ってください！」という意味です。</p>
+<img alt="合計金額入りの買い物リスト画像" id="lm-result-img" style="width:100%;max-width:540px;border:1px solid var(--line);border-radius:14px"/>
+<div class="chips" style="gap:10px">
+<button class="btn" id="lm-download" type="button">画像をダウンロード</button>
+<button class="btn btn-ghost" hidden="" id="lm-share" type="button">共有 / 写真に保存</button>
+</div>
+</div>
+<div class="prose">
+<h2>免税額の目安について</h2>
+<p>外国人旅行者は、対象のオリーブヤングのレジで、1回の会計が<strong>₩15,000</strong>以上<strong>₩1,000,000</strong>未満なら即時免税を受けられます（1回の旅行で最大₩5,000,000）。還付額は付加価値税10%全額ではなく購入額の約<strong>5〜8%</strong>なので、幅を持たせて表示しています。パスポート原本を持参し、支払い前に提示してください。</p>
+<h2>うまく読み取るコツ</h2>
+<p>1枚のスクショに1商品、商品名と価格が見えるようにしてください。オリーブヤングのアプリやサイトのスクショが一番正確です。商品名がおかしい場合は、そのまま上書きしてください。</p>
+<p>なぜこの買い方がいいの？<a href="/guides/olive-young-shopping-tip">オリーブヤングは初日ではなく最終日に買うのが正解</a>をご覧ください。</p>
+</div>
+</div>
+</section>

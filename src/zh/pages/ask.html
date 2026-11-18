@@ -1,0 +1,44 @@
+<!-- {"title": "问问本地人 — 解答你的釜山旅行问题", "description": "关于美食、咖啡馆、住哪里、怎么出行，任何问题都可以问釜山本地人。免费，无需注册。每个问题都由两位釜山本地人亲自阅读。", "path": "/ask", "nav": "ask", "scripts": ["/js/ask.js"]} -->
+<section class="section-soft">
+<div class="container" style="display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start;padding-top:56px;padding-bottom:56px">
+<div style="flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:16px">
+<h1 style="font-size:clamp(36px,4.6vw,48px)">问问本地人</h1>
+<p class="lede">关于釜山的任何问题都可以问——美食、咖啡馆、住哪里、怎么出行。我们是在釜山生活了27年和24年的两个本地人，每个问题都会亲自阅读。</p>
+<ul style="margin:8px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:16px;color:var(--ink-2)">
+<li style="display:flex;gap:10px"><svg aria-hidden="true" fill="none" height="20" stroke="#0A5C8A" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" style="flex:0 0 20px;margin-top:3px" viewbox="0 0 24 24" width="20"><path d="M5 12l5 5 9-10"></path></svg>免费，无需注册</li>
+<li style="display:flex;gap:10px"><svg aria-hidden="true" fill="none" height="20" stroke="#0A5C8A" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" style="flex:0 0 20px;margin-top:3px" viewbox="0 0 24 24" width="20"><path d="M5 12l5 5 9-10"></path></svg>我们会通过邮件回复</li>
+<li style="display:flex;gap:10px"><svg aria-hidden="true" fill="none" height="20" stroke="#0A5C8A" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" style="flex:0 0 20px;margin-top:3px" viewbox="0 0 24 24" width="20"><path d="M5 12l5 5 9-10"></path></svg>好问题可能会整理成攻略公开（绝不公开你的姓名或邮箱）</li>
+</ul>
+</div>
+<div class="panel" style="flex:1 1 520px;min-width:0">
+<form class="form" id="ask-form" method="post" novalidate="">
+<div class="field">
+<label for="ask-q">你的问题</label>
+<textarea id="ask-q" name="question" placeholder="例如：我们晚上9点到金海机场，去广安里最方便的方式是什么？" required="" rows="5"></textarea>
+</div>
+<div class="row">
+<div class="field">
+<label for="ask-topic">主题</label>
+<select id="ask-topic" name="topic">
+<option>美食</option><option>咖啡馆</option><option>游玩与门票</option><option>区域 / 住宿</option><option>实用攻略</option><option>其他</option>
+</select>
+</div>
+<div class="field">
+<label for="ask-area">区域（选填）</label>
+<select id="ask-area" name="area">
+<option>还没决定</option><option>海云台</option><option>广安里</option><option>西面 · 田浦</option><option>南浦 · 札嘎其</option><option>影岛</option><option>机张</option><option>釜山站</option><option>其他</option>
+</select>
+</div>
+</div>
+<div class="field">
+<label for="ask-email">邮箱（用于回复）</label>
+<input autocomplete="email" id="ask-email" name="email" placeholder="you@example.com" required="" type="email"/>
+</div>
+<input aria-hidden="true" autocomplete="off" name="_gotcha" style="display:none" tabindex="-1" type="text"/>
+<button class="btn" type="submit">发送问题</button>
+<p class="form-note">你的邮箱只用于回复你。详见<a href="/privacy">隐私政策</a>。</p>
+<div aria-live="polite" id="ask-status" role="status"></div>
+</form>
+</div>
+</div>
+</section>
