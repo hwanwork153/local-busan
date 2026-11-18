@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 460" role="img" aria-label="Illustration of a suspension bridge over the sea at sunset in Busan">
+  <rect width="600" height="460" fill="#E8F1F7"/>
+  <circle cx="430" cy="150" r="54" fill="#F2A65A"/>
+  <path d="M0 250 L40 238 L60 244 L70 220 L90 220 L95 236 L130 230 L140 205 L160 205 L165 228 L210 232 L230 214 L250 214 L262 236 L300 240 L320 226 L360 226 L370 240 L420 238 L440 222 L470 222 L480 240 L540 236 L560 226 L600 230 L600 290 L0 290 Z" fill="#B9CCD9"/>
+  <rect y="286" width="600" height="174" fill="#0A5C8A"/>
+  <g stroke="#0E1A24" stroke-width="5" stroke-linecap="round" fill="none">
+    <line x1="150" y1="150" x2="150" y2="292"/>
+    <line x1="168" y1="150" x2="168" y2="292"/>
+    <line x1="420" y1="150" x2="420" y2="292"/>
+    <line x1="438" y1="150" x2="438" y2="292"/>
+  </g>
+  <g stroke="#0E1A24" stroke-width="2.5" fill="none">
+    <path d="M0 230 Q80 268 159 152"/>
+    <path d="M159 152 Q294 290 429 152"/>
+    <path d="M429 152 Q520 268 600 230"/>
+  </g>
+  <g stroke="#0E1A24" stroke-width="1.2" opacity="0.7">
+    <line x1="40" y1="246" x2="40" y2="270"/><line x1="80" y1="232" x2="80" y2="270"/><line x1="120" y1="200" x2="120" y2="270"/>
+    <line x1="200" y1="196" x2="200" y2="270"/><line x1="240" y1="226" x2="240" y2="270"/><line x1="294" y1="238" x2="294" y2="270"/>
+    <line x1="348" y1="226" x2="348" y2="270"/><line x1="388" y1="196" x2="388" y2="270"/>
+    <line x1="470" y1="200" x2="470" y2="270"/><line x1="510" y1="232" x2="510" y2="270"/><line x1="560" y1="244" x2="560" y2="270"/>
+  </g>
+  <rect y="266" width="600" height="10" fill="#0E1A24"/>
+  <g stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.55">
+    <path d="M40 330c20 0 20-8 40-8s20 8 40 8"/>
+    <path d="M260 360c20 0 20-8 40-8s20 8 40 8 20-8 40-8"/>
+    <path d="M460 320c20 0 20-8 40-8s20 8 40 8"/>
+    <path d="M90 410c20 0 20-8 40-8s20 8 40 8 20-8 40-8"/>
+    <path d="M400 420c20 0 20-8 40-8s20 8 40 8"/>
+  </g>
+  <rect x="380" y="300" width="100" height="8" rx="4" fill="#F2A65A" opacity="0.6"/>
+  <rect x="400" y="318" width="60" height="6" rx="3" fill="#F2A65A" opacity="0.4"/>
+</svg>

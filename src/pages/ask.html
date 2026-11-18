@@ -1,0 +1,44 @@
+<!-- {"title": "Ask a Local — Busan travel questions answered", "description": "Ask a Busan local anything about food, cafés, where to stay or getting around. Free, no account needed. Two Busan locals read every question.", "path": "/ask", "nav": "ask", "scripts": ["/js/ask.js"]} -->
+<section class="section-soft">
+  <div class="container" style="display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start;padding-top:56px;padding-bottom:56px">
+    <div style="flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:16px">
+      <h1 style="font-size:clamp(36px,4.6vw,48px)">Ask a local</h1>
+      <p class="lede">Ask anything about Busan — food, cafés, where to stay, getting around. We're two Busan locals (27 and 24 years here) and we read every question ourselves.</p>
+      <ul style="margin:8px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:16px;color:var(--ink-2)">
+        <li style="display:flex;gap:10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A5C8A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 20px;margin-top:3px"><path d="M5 12l5 5 9-10"/></svg>Free, no account needed</li>
+        <li style="display:flex;gap:10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A5C8A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 20px;margin-top:3px"><path d="M5 12l5 5 9-10"/></svg>We reply by email</li>
+        <li style="display:flex;gap:10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A5C8A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 20px;margin-top:3px"><path d="M5 12l5 5 9-10"/></svg>Good questions may be published as guides (never with your name or email)</li>
+      </ul>
+    </div>
+    <div class="panel" style="flex:1 1 520px;min-width:0">
+      <form id="ask-form" class="form" method="post" novalidate>
+        <div class="field">
+          <label for="ask-q">Your question</label>
+          <textarea id="ask-q" name="question" rows="5" required placeholder="e.g. We land at Gimhae at 9pm — what's the easiest way to get to Gwangalli?"></textarea>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="ask-topic">Topic</label>
+            <select id="ask-topic" name="topic">
+              <option>Eat</option><option>Cafés</option><option>Tours &amp; tickets</option><option>Neighborhoods / where to stay</option><option>Practical tips</option><option>Something else</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="ask-area">Area (optional)</label>
+            <select id="ask-area" name="area">
+              <option>Not sure yet</option><option>Haeundae</option><option>Gwangalli</option><option>Seomyeon &amp; Jeonpo</option><option>Nampo &amp; Jagalchi</option><option>Yeongdo</option><option>Gijang</option><option>Busan Station</option><option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="ask-email">Your email (for the reply)</label>
+          <input id="ask-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+        </div>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+        <button class="btn" type="submit">Send my question</button>
+        <p class="form-note">We only use your email to reply to you. See the <a href="/privacy">privacy policy</a>.</p>
+        <div id="ask-status" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</section>
