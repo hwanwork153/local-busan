@@ -10,7 +10,7 @@ so the language switcher and hreflang tags can pair them. Internal links in tran
 can be written like the English ones (/about); the build adds the /ja or /zh prefix.
 Run: python3 src/build.py   ->  writes site/
 """
-import json, re, datetime, pathlib, html
+import json, re, datetime, pathlib, html, hashlib
 
 SITE_URL = "https://localbusan.com"   # change if your address is different
 SITE_NAME = "Local Busan"
@@ -159,7 +159,10 @@ def layout(lang, meta, body, available):
         alternates = "\n".join(alts)
     jsonld = meta.get("jsonld")
     jsonld_tag = f'<script type="application/ld+json">{json.dumps(jsonld, ensure_ascii=False)}</script>' if jsonld else ""
-    scripts = "".join(f'<script src="{s}" defer></script>' for s in meta.get("scripts", []))
+    def _v(s):
+        f = pathlib.Path(__file__).resolve().parent.parent / "site" / s.lstrip("/")
+        return f"{s}?v={hashlib.md5(f.read_bytes()).hexdigest()[:8]}" if s.startswith("/") and f.exists() else s
+    scripts = "".join(f'<script src="{_v(s)}" defer></script>' for s in meta.get("scripts", []))
     return f"""<!doctype html>
 <html lang="{L["html"]}">
 <head>

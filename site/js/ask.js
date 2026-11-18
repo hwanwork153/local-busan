@@ -1,7 +1,5 @@
-// Ask a Local form.
-// 1. Create a free form at https://formspree.io (sign up with your email).
-// 2. Paste your form's endpoint below, e.g. 'https://formspree.io/f/abcdwxyz'.
-var FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+// Ask a Local form → Formspree (account hwanwork153@gmail.com, form "Local Busan - Ask a local").
+var FORM_ENDPOINT = 'https://formspree.io/f/mkjrrejp';
 
 var ASK_T = {
   en: { invalid: 'Please write your question and add an email so I can reply.', off: 'The question form is not connected yet. Please try again soon.', sending: 'Sending…', ok: "Thanks — your question is in! We'll reply by email.", fail: 'Sorry, something went wrong. Please try again in a moment.', send: 'Send my question' },
@@ -40,7 +38,13 @@ document.addEventListener('DOMContentLoaded', function () {
     btn.textContent = AT.sending;
     fetch(FORM_ENDPOINT, {
       method: 'POST',
-      body: new FormData(form),
+      body: (function () {
+        var fd = new FormData(form);
+        fd.append('language', (document.documentElement.lang || 'en'));
+        fd.append('page', window.location.pathname);
+        fd.append('_subject', 'Local Busan question');
+        return fd;
+      })(),
       headers: { Accept: 'application/json' }
     }).then(function (res) {
       if (!res.ok) throw new Error('failed');
