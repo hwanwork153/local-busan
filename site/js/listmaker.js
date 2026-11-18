@@ -45,10 +45,18 @@
     // Prices: numbers followed by 원 or preceded by ₩ / W
     var prices = [];
     lines.forEach(function (l) {
-      var re = /(?:₩|W)\s?(\d{1,3}(?:[,.]\d{3})+|\d{4,7})|(\d{1,3}(?:[,.]\d{3})+|\d{4,7})\s?원/g, m;
+      if (/리뷰|review|★|☆|평점|별점|\(\d/i.test(l)) return; // review counts, ratings
+      // 1) amounts with a currency mark (OCR often turns 원 into 월/윈/웜)
+      var re = /(?:₩|W)\s?(\d{1,3}(?:[,.]\d{3})+|\d{4,7})|(\d{1,3}(?:[,.]\d{3})+|\d{4,7})\s?[원월윈웜]/g, m;
       while ((m = re.exec(l))) {
         var v = parseInt((m[1] || m[2]).replace(/[,.]/g, ''), 10);
         if (v >= 500 && v <= 2000000) prices.push(v);
+      }
+      // 2) comma-formatted amounts like 20,800 even if the currency mark was lost
+      var re2 = /(?:^|[^\d,])(\d{1,3}(?:,\d{3})+)(?![\d,])/g;
+      while ((m = re2.exec(l))) {
+        var v2 = parseInt(m[1].replace(/,/g, ''), 10);
+        if (v2 >= 1000 && v2 <= 2000000 && prices.indexOf(v2) === -1) prices.push(v2);
       }
     });
     // The sale price is usually the lowest price shown (the original price is crossed out).
