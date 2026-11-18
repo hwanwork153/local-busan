@@ -12,7 +12,7 @@ Run: python3 src/build.py   ->  writes site/
 """
 import json, re, datetime, pathlib, html
 
-SITE_URL = "https://localbusan.pages.dev"   # change if your address is different
+SITE_URL = "https://localbusan.com"   # change if your address is different
 SITE_NAME = "Local Busan"
 AUTHORS = [
     {"@type": "Person", "name": "Minwoo Choi", "url": SITE_URL + "/about#minwoo"},

@@ -1,6 +1,6 @@
 # Local Busan — working notes for Claude
 
-Live site: https://localbusan.pages.dev (Cloudflare Pages, auto-deploys from `main` in ~1 min; build output dir = `site`, no build command).
+Live site: https://localbusan.com (custom domain on Cloudflare Pages project "localbusan"; localbusan.pages.dev and www redirect to it via functions/_middleware.js. Cloudflare Pages, auto-deploys from `main` in ~1 min; build output dir = `site`, no build command).
 All accounts (GitHub, Cloudflare, Google Search Console, Google Drive) = hwanwork153@gmail.com.
 
 ## Structure

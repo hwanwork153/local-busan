@@ -387,7 +387,7 @@
     }
     ctx.fillStyle = '#55656F'; ctx.font = '400 21px ' + sans;
     ctx.fillText(t('cNote'), pad, fy + 222);
-    ctx.fillText('Made with Local Busan · localbusan.pages.dev', pad, fy + 266);
+    ctx.fillText('Made with Local Busan · localbusan.com', pad, fy + 266);
 
     c.toBlob(function (blob) {
       lastBlob = blob;
