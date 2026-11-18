@@ -81,9 +81,13 @@ def lp(lang, path):
     return pre + path
 
 
+KLOOK_LANG = {"en": "en-BS", "ja": "ja", "zh": "zh-CN"}
+
+
 def localize_links(lang, body):
     if lang == "en":
         return body
+    body = body.replace('data-lang="en-BS"', f'data-lang="{KLOOK_LANG[lang]}"')
     def fix(m):
         attr, path = m.group(1), m.group(2)
         if STATIC.match(path):

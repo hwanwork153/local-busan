@@ -252,3 +252,5 @@ html:lang(ja) .prose,html:lang(zh-Hans) .prose{line-break:strict;word-break:norm
 .aff-card p{font-size:16px;line-height:1.65;color:var(--ink-2)}
 .aff-tag{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#9A4A12}
 .aff-note{font-size:12px;color:var(--muted-2)}
+.aff-banner{display:flex;flex-direction:column;align-items:center;gap:6px;padding-top:4px}
+@media (max-width:900px){.aff-banner{display:none}}
