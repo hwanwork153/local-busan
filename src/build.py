@@ -81,6 +81,9 @@ def lp(lang, path):
     return pre + path
 
 
+import hashlib as _h
+CSS_V = _h.md5((pathlib.Path(__file__).resolve().parent.parent / "site/css/style.css").read_bytes()).hexdigest()[:8]
+
 KLOOK_LANG = {"en": "en-BS", "ja": "ja", "zh": "zh-CN"}
 
 
@@ -185,7 +188,7 @@ def layout(lang, meta, body, available):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/style.css?v={CSS_V}">
 {jsonld_tag}
 {scripts}
 </head>
