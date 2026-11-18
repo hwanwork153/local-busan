@@ -84,6 +84,7 @@
       return getWorker().then(function (worker) {
         return worker.recognize(it.img);
       }).then(function (res) {
+        (window.__lmRaw = window.__lmRaw || []).push(res.data.text || '');
         var p = parseText(res.data.text || '');
         if (!it.name) it.name = p.name;
         if (!it.price) it.price = p.price;
