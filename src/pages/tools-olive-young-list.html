@@ -1,0 +1,48 @@
+<!-- {"title": "Olive Young Shopping List Maker — turn screenshots into one image", "description": "Free tool for travelers in Korea: add screenshots of the Olive Young products you want and get one clean list image to show store staff. Works in your browser; photos are never uploaded.", "path": "/tools/olive-young-list", "nav": "tips", "scripts": ["/js/listmaker.js"], "jsonld": {"@context": "https://schema.org", "@type": "WebApplication", "name": "Olive Young Shopping List Maker", "url": "https://localbusan.pages.dev/tools/olive-young-list", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "creator": {"@type": "Organization", "name": "Local Busan"}}} -->
+<section class="section">
+  <div class="container" style="display:flex;flex-direction:column;gap:28px">
+    <nav class="breadcrumb" aria-label="Breadcrumb" style="margin:0"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/guides#tips">Practical tips</a><span aria-hidden="true">/</span><span>Olive Young list maker</span></nav>
+    <div style="max-width:760px;display:flex;flex-direction:column;gap:14px">
+      <span class="badge" style="align-self:flex-start">Free tool</span>
+      <h1 style="font-size:clamp(32px,4.4vw,46px)">Olive Young shopping list maker</h1>
+      <p class="lede">Add screenshots of the products you want. You'll get <strong>one image</strong> with every product numbered, plus a Korean line asking staff for help. Show it at the counter and they can find everything fast.</p>
+      <p class="form-note">Your images stay on your phone. Nothing is uploaded to our server.</p>
+    </div>
+
+    <div class="panel lm-panel">
+      <div class="field" style="flex:none">
+        <label for="lm-title">List title</label>
+        <input id="lm-title" type="text" maxlength="40" value="My Olive Young list">
+      </div>
+      <div id="lm-drop" class="lm-drop">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3M12 4v12M7 9l5-5 5 5"/></svg>
+        <label for="lm-files" class="btn">Add screenshots</label>
+        <input id="lm-files" type="file" accept="image/*" multiple class="visually-hidden">
+        <span class="form-note">Up to 30 products · drag and drop works on computers</span>
+      </div>
+      <p id="lm-empty" class="form-note" style="text-align:center">No products yet.</p>
+      <div id="lm-grid" class="lm-grid"></div>
+      <div class="chips" style="gap:10px">
+        <button id="lm-make" class="btn" type="button" disabled>Make my list image</button>
+        <button id="lm-clear" class="btn btn-ghost" type="button" hidden>Start over</button>
+      </div>
+      <p id="lm-status" role="status" aria-live="polite" class="form-note"></p>
+    </div>
+
+    <div id="lm-result" class="panel" hidden style="display:flex;flex-direction:column;gap:16px">
+      <h2 class="h2">Your list is ready</h2>
+      <p style="color:var(--muted)">Save it to your photos. At the store, show it to staff — the Korean line at the top says "I'm looking for these products. Please help!"</p>
+      <img id="lm-result-img" alt="Your shopping list image" style="width:100%;max-width:540px;border:1px solid var(--line);border-radius:14px">
+      <div class="chips" style="gap:10px">
+        <button id="lm-download" class="btn" type="button">Download image</button>
+        <button id="lm-share" class="btn btn-ghost" type="button" hidden>Share / save to photos</button>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h2>How to use it</h2>
+      <p>1. While you travel, screenshot products you like — in the Olive Young app, on social media, or on store shelves.<br>2. On your last day, add the screenshots here and write a quick note (quantity, shade) under each.<br>3. Download the image, walk into one big Olive Young, and show it to staff.</p>
+      <p>Why this works, and the full strategy for shopping light: <a href="/guides/olive-young-shopping-tip">Shop Olive Young on your last day, not your first</a>.</p>
+    </div>
+  </div>
+</section>
