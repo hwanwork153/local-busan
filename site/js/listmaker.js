@@ -54,16 +54,27 @@
     // The sale price is usually the lowest price shown (the original price is crossed out).
     var price = prices.length ? Math.min.apply(null, prices) : 0;
 
-    // Name: the longest line that looks like a product title.
-    var best = '', bestScore = 0;
-    lines.forEach(function (l) {
-      if (/원|₩|%/.test(l) && /\d/.test(l)) return;
-      if (UI_WORDS.test(l) && l.length < 14) return;
+    // Name: the line that looks most like a product title (+ the brand line right above it, if any).
+    var best = '', bestScore = 0, bestIdx = -1;
+    function skip(l) {
+      if (/올리브\s?영|olive\s?young/i.test(l)) return true;
+      if (/원|₩|%|★/.test(l) && /\d/.test(l)) return true;
+      if (UI_WORDS.test(l) && l.length < 14) return true;
+      if (/상품\s?이미지/.test(l)) return true;
+      return false;
+    }
+    lines.forEach(function (l, i) {
+      if (skip(l)) return;
       var letters = (l.match(/[가-힣A-Za-z]/g) || []).length;
       if (letters < 4) return;
-      var score = letters + (/[가-힣]/.test(l) ? 2 : 0) - (l.match(/[^가-힣A-Za-z0-9\s\[\]()+\-/.,&'%ml]/g) || []).length * 2;
-      if (score > bestScore) { bestScore = score; best = l; }
+      var score = letters + (/[가-힣]/.test(l) ? 3 : 0) + (/\d+\s?(ml|mL|g|매|개|입|ea)\b/.test(l) ? 4 : 0)
+        - (l.match(/[^가-힣A-Za-z0-9\s\[\]()+\-/.,&'%]/g) || []).length * 2;
+      if (score > bestScore) { bestScore = score; best = l; bestIdx = i; }
     });
+    if (bestIdx > 0) {
+      var prev = lines[bestIdx - 1];
+      if (!skip(prev) && prev.length <= 14 && !/\d/.test(prev) && /[가-힣A-Za-z]{2,}/.test(prev) && best.indexOf(prev) === -1) best = prev + ' ' + best;
+    }
     best = best.replace(/^[^가-힣A-Za-z0-9\[(]+/, '').replace(/[|_~]+/g, '').trim().slice(0, 80);
     return { name: best, price: price };
   }
