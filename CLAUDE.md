@@ -10,7 +10,7 @@ All accounts (GitHub, Cloudflare, Google Search Console, Google Drive) = hwanwor
 - `tools/heic2jpg.py` — converts iPhone HEIC photos: `python3 -I tools/heic2jpg.py in.heic out.jpg`.
 
 ## Authors
-- Minwoo Choi — neighborhood guide, 27 years in Busan, moved 10+ times (Dongnae, Dalmaji, Haeundae, Centum). Photo: site/images/minwoo-choi.jpg
+- Minwoo Choi — fashion lover, shopping enthusiast and practical-tips expert; 27 years in Busan, moved 10+ times (Dongnae, Dalmaji, Haeundae, Centum). Writes shopping guides and practical tips. Photo: site/images/minwoo-choi.jpg
 - Hyunseo (현서) — food expert, 24 years in Busan. Writes restaurant guides.
 
 ## Writing rules

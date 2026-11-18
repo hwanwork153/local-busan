@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Olive Young Shopping List Maker — turn screenshots into one image | Local Busan</title>
-<meta name="description" content="Free tool for travelers in Korea: add screenshots of the Olive Young products you want and get one clean list image to show store staff. Works in your browser; photos are never uploaded.">
+<title>Olive Young Shopping List &amp; Tax Refund Calculator — from your screenshots | Local Busan</title>
+<meta name="description" content="Free tool for travelers in Korea: add screenshots of Olive Young products and it reads the product names and prices for you. Adjust quantities, see your total and price after the instant tax refund, and save one list image to show store staff.">
 <link rel="canonical" href="https://localbusan.pages.dev/tools/olive-young-list">
 
 <meta property="og:site_name" content="Local Busan">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Olive Young Shopping List Maker — turn screenshots into one image">
-<meta property="og:description" content="Free tool for travelers in Korea: add screenshots of the Olive Young products you want and get one clean list image to show store staff. Works in your browser; photos are never uploaded.">
+<meta property="og:title" content="Olive Young Shopping List &amp; Tax Refund Calculator — from your screenshots">
+<meta property="og:description" content="Free tool for travelers in Korea: add screenshots of Olive Young products and it reads the product names and prices for you. Adjust quantities, see your total and price after the instant tax refund, and save one list image to show store staff.">
 <meta property="og:url" content="https://localbusan.pages.dev/tools/olive-young-list">
 <meta property="og:image" content="https://localbusan.pages.dev/images/og.png">
 <meta property="og:image:width" content="1200">
@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/style.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Olive Young Shopping List Maker", "url": "https://localbusan.pages.dev/tools/olive-young-list", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "creator": {"@type": "Organization", "name": "Local Busan"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Olive Young Shopping List & Tax Refund Calculator", "url": "https://localbusan.pages.dev/tools/olive-young-list", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "creator": {"@type": "Organization", "name": "Local Busan"}}</script>
 <script src="/js/listmaker.js" defer></script>
 </head>
 <body>
@@ -40,37 +40,48 @@
 <section class="section">
   <div class="container" style="display:flex;flex-direction:column;gap:28px">
     <nav class="breadcrumb" aria-label="Breadcrumb" style="margin:0"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/guides#tips">Practical tips</a><span aria-hidden="true">/</span><span>Olive Young list maker</span></nav>
-    <div style="max-width:760px;display:flex;flex-direction:column;gap:14px">
+    <div style="max-width:780px;display:flex;flex-direction:column;gap:14px">
       <span class="badge" style="align-self:flex-start">Free tool</span>
-      <h1 style="font-size:clamp(32px,4.4vw,46px)">Olive Young shopping list maker</h1>
-      <p class="lede">Add screenshots of the products you want. You'll get <strong>one image</strong> with every product numbered, plus a Korean line asking staff for help. Show it at the counter and they can find everything fast.</p>
-      <p class="form-note">Your images stay on your phone. Nothing is uploaded to our server.</p>
+      <h1 style="font-size:clamp(32px,4.4vw,46px)">Olive Young shopping list &amp; tax refund calculator</h1>
+      <p class="lede">Add screenshots of the products you want. We read the <strong>product name and price</strong> for you, you set the quantities, and you see your <strong>total and price after the instant tax refund</strong> — like a receipt before you shop. Then save one list image to show store staff.</p>
+      <p class="form-note">Your screenshots stay on your device; the text reader runs in your browser. It can make mistakes, so check each name and price.</p>
     </div>
 
-    <div class="panel lm-panel">
-      <div class="field" style="flex:none">
-        <label for="lm-title">List title</label>
-        <input id="lm-title" type="text" maxlength="40" value="My Olive Young list">
+    <div class="lm-layout">
+      <div class="panel lm-panel">
+        <div class="field" style="flex:none">
+          <label for="lm-title">List title</label>
+          <input id="lm-title" type="text" maxlength="40" value="My Olive Young list">
+        </div>
+        <div id="lm-drop" class="lm-drop">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3M12 4v12M7 9l5-5 5 5"/></svg>
+          <label for="lm-files" class="btn">Add screenshots</label>
+          <input id="lm-files" type="file" accept="image/*" multiple class="visually-hidden">
+          <span class="form-note">One product per screenshot works best · up to 30</span>
+        </div>
+        <p id="lm-status" role="status" aria-live="polite" class="form-note"></p>
+        <p id="lm-empty" class="form-note" style="text-align:center">No products yet.</p>
+        <div id="lm-list" class="lm-list"></div>
+        <div class="chips" style="gap:10px">
+          <button id="lm-add" class="btn btn-ghost" type="button">+ Add a product by hand</button>
+          <button id="lm-clear" class="btn btn-ghost" type="button" hidden>Start over</button>
+        </div>
       </div>
-      <div id="lm-drop" class="lm-drop">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3M12 4v12M7 9l5-5 5 5"/></svg>
-        <label for="lm-files" class="btn">Add screenshots</label>
-        <input id="lm-files" type="file" accept="image/*" multiple class="visually-hidden">
-        <span class="form-note">Up to 30 products · drag and drop works on computers</span>
-      </div>
-      <p id="lm-empty" class="form-note" style="text-align:center">No products yet.</p>
-      <div id="lm-grid" class="lm-grid"></div>
-      <div class="chips" style="gap:10px">
-        <button id="lm-make" class="btn" type="button" disabled>Make my list image</button>
-        <button id="lm-clear" class="btn btn-ghost" type="button" hidden>Start over</button>
-      </div>
-      <p id="lm-status" role="status" aria-live="polite" class="form-note"></p>
+
+      <aside class="lm-receipt" aria-label="Receipt preview">
+        <div class="lm-rhead"><strong>Receipt preview</strong><span id="lm-r-count">0 items</span></div>
+        <div class="lm-rrow"><span>Total</span><strong id="lm-r-subtotal">₩0</strong></div>
+        <div class="lm-rrow lm-rrefund"><span>Est. instant tax refund</span><span id="lm-r-refund">—</span></div>
+        <div class="lm-rrow lm-rpay"><span>You pay after refund</span><strong id="lm-r-pay">₩0</strong></div>
+        <p id="lm-r-note" class="lm-rnote">Add products to see your total.</p>
+        <button id="lm-make" class="btn" type="button" disabled style="width:100%">Save as one image</button>
+      </aside>
     </div>
 
     <div id="lm-result" class="panel" hidden style="display:flex;flex-direction:column;gap:16px">
       <h2 class="h2">Your list is ready</h2>
       <p style="color:var(--muted)">Save it to your photos. At the store, show it to staff — the Korean line at the top says "I'm looking for these products. Please help!"</p>
-      <img id="lm-result-img" alt="Your shopping list image" style="width:100%;max-width:540px;border:1px solid var(--line);border-radius:14px">
+      <img id="lm-result-img" alt="Your shopping list image with totals" style="width:100%;max-width:540px;border:1px solid var(--line);border-radius:14px">
       <div class="chips" style="gap:10px">
         <button id="lm-download" class="btn" type="button">Download image</button>
         <button id="lm-share" class="btn btn-ghost" type="button" hidden>Share / save to photos</button>
@@ -78,9 +89,11 @@
     </div>
 
     <div class="prose">
-      <h2>How to use it</h2>
-      <p>1. While you travel, screenshot products you like — in the Olive Young app, on social media, or on store shelves.<br>2. On your last day, add the screenshots here and write a quick note (quantity, shade) under each.<br>3. Download the image, walk into one big Olive Young, and show it to staff.</p>
-      <p>Why this works, and the full strategy for shopping light: <a href="/guides/olive-young-shopping-tip">Shop Olive Young on your last day, not your first</a>.</p>
+      <h2>How the tax refund estimate works</h2>
+      <p>Foreign visitors can get an instant tax refund at participating Olive Young counters on one receipt from <strong>₩15,000</strong> up to under <strong>₩1,000,000</strong> (up to ₩5,000,000 per trip). The refund is roughly <strong>5–8%</strong> of the purchase, not the full 10% VAT, so we show a range. Bring your physical passport and show it before you pay.</p>
+      <h2>Tips for better results</h2>
+      <p>Use one product per screenshot, with the name and price visible. Screenshots from the Olive Young app or website read best. If a name comes out garbled, just type over it.</p>
+      <p>Why shop this way? Read <a href="/guides/olive-young-shopping-tip">Olive Young tip: shop on your last day, not your first</a>.</p>
     </div>
   </div>
 </section>
