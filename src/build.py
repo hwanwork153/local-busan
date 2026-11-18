@@ -22,7 +22,7 @@ ROOT = pathlib.Path(__file__).resolve().parent
 OUT = ROOT.parent / "site"
 TODAY = datetime.date.today().isoformat()
 YEAR = datetime.date.today().year
-VERIFY = "tK6F0QeMDl2YvQYlnRr1BxjwUCncVLAwwo9wmyorlCo"
+VERIFY = ["rwcxFP-PQmnBg84kqpqzv1FpxHzRL_FCqZ4QD2k7Seo", "tK6F0QeMDl2YvQYlnRr1BxjwUCncVLAwwo9wmyorlCo"]  # localbusan.com, localbusan.pages.dev
 
 LANGS = {
     "en": {
@@ -176,7 +176,7 @@ def layout(lang, meta, body, available):
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 <meta name="theme-color" content="#0A5C8A">
-<meta name="google-site-verification" content="{VERIFY}">
+{"".join(f'<meta name="google-site-verification" content="{v}">' for v in VERIFY)}
 <meta name="author" content="Minwoo Choi, Hyunseo">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
