@@ -162,3 +162,12 @@ a.card:hover{border-color:#B9C7D1;color:var(--ink)}
 .guide-photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
 .guide-photos img{width:100%;height:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px}
 .hero-photo{width:100%;height:clamp(220px,40vw,480px);object-fit:cover;border-radius:20px;margin-top:28px}
+.menu-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+.menu{width:100%;border-collapse:collapse;font-size:16px;line-height:1.45;min-width:520px}
+.menu th{text-align:left;font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted-2);padding:12px 16px;background:var(--bg-soft);border-bottom:1px solid var(--line)}
+.menu td{padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--muted)}
+.menu tr:last-child td{border-bottom:0}
+.menu .ko-cell{display:block;font-family:"Noto Sans KR",sans-serif;font-weight:700;color:var(--ink)}
+.menu .rom{display:block;font-size:14px;color:var(--muted-2)}
+.menu .price{white-space:nowrap;font-weight:600;color:var(--ink);text-align:right}
+.menu tr.pick td{background:var(--accent-soft)}
