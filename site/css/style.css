@@ -350,3 +350,4 @@ html:lang(ja) .ask-band h2,html:lang(zh-Hans) .ask-band h2{line-height:1.2;lette
 .story-head h3 a{color:inherit;text-decoration:none}.story-head h3 a:hover{text-decoration:underline;text-decoration-thickness:2px}
 .story-text .story-copy{flex:1 1 300px;max-width:420px;padding-bottom:6px}
 html:lang(ja) .story-head h3,html:lang(zh-Hans) .story-head h3{line-height:1.2;letter-spacing:-0.01em}
+.mask-dome{border-radius:999px 999px 0 0}
