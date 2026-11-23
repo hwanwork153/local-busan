@@ -117,7 +117,7 @@ def header(lang, active, path, available):
     return f"""<a class="skip-link" href="#main">{L["skip"]}</a>
 <header class="site-header">
   <div class="container">
-    <a class="logo" href="{lp(lang, "/")}">{LOGO_SVG}<span>{SITE_NAME}</span></a>
+    <a class="logo" href="{lp(lang, "/")}" aria-label="{SITE_NAME}"><span>Local <em>Busan</em></span></a>
     <div class="header-right">
       <nav class="nav" aria-label="Main">{''.join(links)}</nav>
       <nav class="lang-switch" aria-label="{L["lang_nav"]}">{GLOBE}{''.join(switch)}</nav>
@@ -130,7 +130,8 @@ def footer(lang):
     L = LANGS[lang]
     fl = "".join(f'<a href="{lp(lang, h)}">{t}</a>' for t, h in L["fnav"])
     return f"""<footer class="site-footer">
-  <div class="container">
+  <div class="footer-word" aria-hidden="true"><div class="container"><span>Local <em>Busan</em></span></div></div>
+  <div class="container footer-main">
     <div class="footer-brand">
       <strong>{SITE_NAME}</strong>
       <span>{L["footer"]}</span>
@@ -185,12 +186,12 @@ def layout(lang, meta, body, available):
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
-<meta name="theme-color" content="#0A5C8A">
+<meta name="theme-color" content="#F6F2E9">
 {"".join(f'<meta name="google-site-verification" content="{v}">' for v in VERIFY)}
 <meta name="author" content="Minwoo Choi, Hyunseo">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/style.css?v={CSS_V}">
 {jsonld_tag}
 {scripts}
