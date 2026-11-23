@@ -342,3 +342,11 @@ html:lang(ja) .ask-band h2,html:lang(zh-Hans) .ask-band h2{line-height:1.2;lette
   .mast h1{font-size:17.5vw}
 }
 @media (max-width:720px){.lang-switch{flex:0 0 auto;white-space:nowrap}.lang-switch a{padding:10px 4px}}
+
+/* Story without a photo: type fills the row */
+.story-text .container{align-items:flex-end;gap:24px 56px}
+.story-head{flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:14px}
+.story-head h3{font-size:clamp(32px,4.8vw,68px);line-height:.95;letter-spacing:-0.055em;text-transform:uppercase;font-weight:600}
+.story-head h3 a{color:inherit;text-decoration:none}.story-head h3 a:hover{text-decoration:underline;text-decoration-thickness:2px}
+.story-text .story-copy{flex:1 1 300px;max-width:420px;padding-bottom:6px}
+html:lang(ja) .story-head h3,html:lang(zh-Hans) .story-head h3{line-height:1.2;letter-spacing:-0.01em}
